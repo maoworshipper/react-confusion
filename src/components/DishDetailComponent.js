@@ -28,13 +28,13 @@ class DishDetail extends Component {
                // var fecha = new Date(comments.date).toUTCString();
                
                 return(
-                    <div className="container">
+                    
                          <ListGroupItem key={comments.id} >
                              {comments.comment}
                             <br/>
-                            -- {comments.author}, {new Intl.DateTimeFormat('en-US', {yer: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comments.date)))} )
+                            -- {comments.author}, {new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comments.date)))}
                          </ListGroupItem>
-                    </div>
+                    
                  );
             });
             return(
@@ -56,12 +56,14 @@ class DishDetail extends Component {
     render() {
 
     return (
+    <div className="container">    
     <div className="row">
     <div className="col-12 col-md-5 m-1">
         {this.renderDish(this.props.dish)}
     </div>
     <div className="col-12 col-md-5 m-1">
         {this.renderComments(this.props.dish)}
+    </div>
     </div>
     </div>
         );
