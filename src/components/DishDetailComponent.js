@@ -3,14 +3,6 @@ import { Card, CardImg, CardText, CardBody, CardTitle, ListGroup, ListGroupItem 
 
 class DishDetail extends Component {
 
-    constructor(props){
-        super(props);
-
-        this.state = {
-            mydish: null
-        }
-    }
-
     renderDish(dish){
         if(dish != null){
             return(
@@ -33,17 +25,16 @@ class DishDetail extends Component {
     renderComments(dish){
         if(dish != null){
             const comm = dish.comments.map( (comments) => {
-                var fecha = new Date(comments.date).toUTCString();
-                //var months = ["January","February","March","April","May","June","July","August","September","November","December"];
-                //fecha = fecha.getMonth() + " " + fecha.getDay() + ", " + fecha.getFullYear();
+               // var fecha = new Date(comments.date).toUTCString();
+               
                 return(
-
+                    <div className="container">
                          <ListGroupItem key={comments.id} >
                              {comments.comment}
                             <br/>
-                            -- {comments.author}, {fecha}
+                            -- {comments.author}, {new Intl.DateTimeFormat('en-US', {yer: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comments.date)))} )
                          </ListGroupItem>
-                                       
+                    </div>
                  );
             });
             return(
@@ -67,10 +58,10 @@ class DishDetail extends Component {
     return (
     <div className="row">
     <div className="col-12 col-md-5 m-1">
-        {this.renderDish(this.props.dishsel)}
+        {this.renderDish(this.props.dish)}
     </div>
     <div className="col-12 col-md-5 m-1">
-        {this.renderComments(this.props.dishsel)}
+        {this.renderComments(this.props.dish)}
     </div>
     </div>
         );
